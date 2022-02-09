@@ -21,8 +21,6 @@ jobs:
           allow_failure: true
       - name: File exists
         if: steps.in_otk.outputs.check_build_wna.files_exists == 'false'
-        runs-on: ubuntu-latest
-        steps:
         - name: Check Catalog File Existence
           id: check_il_catalog_file
           uses: andstor/file-existence-action@v1
