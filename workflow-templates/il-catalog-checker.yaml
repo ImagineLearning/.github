@@ -1,0 +1,31 @@
+name: IL Catalog Checker Workflow
+
+on:
+  pull_request:
+    branches: [ $default-branch ]
+  push:
+    branches: [ $default-branch ]
+  
+jobs:
+  in_otk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Check OTK File Existence
+        id: check_build_wna
+        uses: andstor/file-existence-action@v1
+        with:
+          files: ".build_wna"
+          allow_failure: true
+      - name: File exists
+        if: steps.in_otk.outputs.check_build_wna.files_exists == 'false'
+        runs-on: ubuntu-latest
+        steps:
+        - name: Check Catalog File Existence
+          id: check_il_catalog_file
+          uses: andstor/file-existence-action@v1
+          with:
+            files: "il-catalog-info.yaml"
+   

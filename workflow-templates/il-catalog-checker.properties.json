@@ -1,0 +1,4 @@
+{
+  "name": "IL Catalog Checker Workflow",
+  "description": "Will ensure that you have an il-catalog-info.yaml file"
+}
